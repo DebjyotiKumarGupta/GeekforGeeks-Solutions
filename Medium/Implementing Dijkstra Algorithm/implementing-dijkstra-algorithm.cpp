@@ -10,15 +10,17 @@ class Solution
     //from the source vertex S.
     vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
-       priority_queue<pair<int,int>, vector<pair<int,int>> , greater<pair<int,int>>> pq;
-       pq.push({0,S});
+    //   priority_queue<pair<int,int>, vector<pair<int,int>> , greater<pair<int,int>>> pq;
+     set<pair<int,int>> pq;
+       pq.insert({0,S});
        vector<int> dist(V,1e9);
        dist[S]=0;
        
        while(!pq.empty()){
-           int dis = pq.top().first;
-           int u = pq.top().second;
-           pq.pop();
+           auto it = *(pq.begin());
+           int dis = it.first;
+           int u = it.second;
+           pq.erase(it);
            
            
            for(auto it: adj[u]){
@@ -26,7 +28,7 @@ class Solution
                int v = it[0]; 
                if(dist[u]+edgeweight<dist[v]){
                    dist[v] = dist[u] + edgeweight;
-                   pq.push({dist[v],v});
+                   pq.insert({dist[v],v});
                }
            }
        }
