@@ -7,12 +7,13 @@ using namespace std;
 class Solution{
 public:
 	void pushZerosToEnd(int arr[], int n) {
-	   int counter=0;
-	   for(int i=0;i<n;i++){
-	       if(arr[i]!=0){
-	       swap(arr[i],arr[counter]);
-	       counter++;
-	       }    
+	   int count=0; 
+	   for(int i=0;i<n;i++) {
+	       if(arr[i]!=0) {
+	           swap(arr[i], arr[count]);
+	           count++;
+	           
+	       }
 	   }
 	}
 };
